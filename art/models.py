@@ -25,3 +25,28 @@ class Company(models.Model):
 
 	def save_company(self):
 		self.save()	
+
+class UserProfile(models.Model):
+	user = models.OneToOneField(User, on_delete=models.CASCADE,related_name="profile")
+	ID=models.CharField(max_length=100, null=True, blank=True)
+	company=models.ForeignKey(Company, on_delete=models.CASCADE,related_name="company",null=True,blank=True)
+	profilepicture = models.ImageField(upload_to='images/', blank=True,default="/black.png")
+	secondary_email = models.CharField(max_length=100, null=True, blank=True)
+
+	def __str__(self):
+		return self.user.username
+	class Meta:
+		ordering = ['user']
+	def save_user(self):
+		self.save()
+	def delete_user(self):
+		self.delete()		
+
+	@receiver(post_save, sender=User)
+	def create_user_profile(sender, instance, created, **kwargs):
+		if created:
+				UserProfile.objects.create(user=instance)
+
+	@receiver(post_save, sender=User)
+	def save_user_profile(sender, instance, **kwargs):
+		instance.profile.save()
