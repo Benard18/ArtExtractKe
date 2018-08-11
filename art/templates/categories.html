@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{%load static%}
+<link rel='stylesheet' href="{% static "css/style.css"%}">
+<link href="https://fonts.googleapis.com/css?family=Julius+Sans+One|Roboto+Condensed" rel="stylesheet">
+{% block content %}
+	
+
+
+<div class="container">
+<div class='row' style="line-height:200px;margin-top:150px;">
+<h1 class="forms aligner"  style="margin-left:50px;margin-bottom:50px;">Welcome to the page these are among the various categories you can possibly venture in!</h1>
+{% for category in categories %}
+<div class="col-md-4 col-xs-4 col-sm-4">
+<div class="forms aligner card"  style="margin-left:50px;"><h3>{{category.name}}<h3><a href="{% url "categories_id" cat_id=category.id %}"><img src="{{category.profilepicture.url}}" class="img"></a><br></div>
+</div>
+{%endfor%}
+
+</div>
+</div>
+{%endblock%}

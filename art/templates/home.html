@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if user.profile.company in companies %}
+<div class='beginning-page'>
+	<div id='beginning-page'><h1>You have Successfully joined {{user.profile.company.name}} !</h1>
+		<h5><a href='{% url "new_post"%}'>Add a Post in {{user.profile.company.name}} </a> <a>|</a> <a href='{% url "company_feed" compani_id=user.profile.company.id%}'>Find you're Fellow People in  {{user.profile.company.name}}</a> <a>|</a> <a href='{% url "company_delete" compdel_id=user.profile.company.id %}'>Explore other categories and companies</a><a>|</a> <a href='{% url "company_id" company_id=user.profile.company.id%}'>Explore the company</a> </h5> </div>
+</div>
+
+{% else %}
+
+<div class='beginner-page'>
+	<div id='beginner-page'><h1>Welcome to Art Extract Kenya!</h1>
+		<h5><a>Youre dreams our reality</a><a>|</a><a href='/categories'>Choose a category based on you're expertise</a> <a>|</a> <a href=''>Find and explore infinite companies</a> </h5> </div>
+</div>
+{%endif%}
+
+{%endblock%}

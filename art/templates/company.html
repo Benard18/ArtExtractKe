@@ -1,0 +1,14 @@
+{% extends "base.html"%}
+{%block content %}
+<div class="container">
+<div class='row' style="line-height:200px;margin-top:150px;">
+
+{% for company in companies %}
+<div class="col-md-4 col-xs-4 col-sm-4">
+<div class="forms aligner card"  style="margin-left:50px;"><h3>{{company.name}}<h3><a href=""><img src="{{company.profilepicture.url}}" class="img"></a><br></div>
+</div>
+{%endfor%}
+
+</div>
+</div>
+{%endblock%}

@@ -1,0 +1,28 @@
+{% extends 'base.html'%}
+{%block content%}
+{% load bootstrap4%}
+<div class="container">
+	
+<div class='row' style="line-height:200px;margin-top:150px;">
+	<h1 class="forms aligner"style="margin-left:30px;"">These are the recent posts found in the company</h1>
+<div class="col-md-4 col-xs-4 col-sm-4"></div>
+<div class="col-md-4 col-xs-4 col-sm-4">
+
+{%for post in posts%}
+<div class="forms aligner card" id="post"  style="margin-left:50px;"><h3><strong>{{post.user.username}}</strong></h3><h3>{{post.post}}</h3><form  action="" method="post"class="fform aligner" style="width:100%">
+	 {% csrf_token %} 
+
+    {% bootstrap_form form layout='inline' %}
+  </form><br></div>
+
+
+{%endfor%}
+</div>
+<div class="col-md-4 col-xs-4 col-sm-4"></div>
+</div>
+</div>
+</div>
+{%endblock%}
+
+
+{{post.post}}
