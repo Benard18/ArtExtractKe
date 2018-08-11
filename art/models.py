@@ -61,3 +61,13 @@ class Comments(models.Model):
 	comments = models.TextField()
 	date_posted = models.DateTimeField(auto_now=True)
 	post=models.ForeignKey(Post, on_delete=models.CASCADE,related_name="comments")
+
+class Messages(models.Model):
+	content = models.TextField()
+	sender = models.ForeignKey(User, related_name='outbox')
+	reciever = models.ForeignKey(User, related_name='inbox')
+	read = models.BooleanField(default=False)
+	time_sent = models.DateTimeField(auto_now_add=True)
+
+
+	
