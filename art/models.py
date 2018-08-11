@@ -50,3 +50,8 @@ class UserProfile(models.Model):
 	@receiver(post_save, sender=User)
 	def save_user_profile(sender, instance, **kwargs):
 		instance.profile.save()
+
+class Post(models.Model):
+	post=models.CharField(max_length=100, null=True, blank=True)
+	user=models.ForeignKey(User,on_delete=models.CASCADE,related_name="adminpost",null=True,blank=True)
+	company=models.ForeignKey(Company, on_delete=models.CASCADE,related_name="company_post",null=True,blank=True)
