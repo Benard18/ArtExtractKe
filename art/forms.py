@@ -1,6 +1,5 @@
 from django.contrib.auth.models import User
 from django import forms
-from .models import *from .models import *
 from .models import *
 
 class Dmform(forms.ModelForm):
@@ -17,3 +16,9 @@ class NewPostForm(forms.ModelForm):
 	class Meta:
 		model = Post
 		exclude = ['user']
+
+
+class NewCommentForm(forms.ModelForm):	
+	class Meta:
+		model = Comments
+		exclude = ['user','date_posted','post']			
