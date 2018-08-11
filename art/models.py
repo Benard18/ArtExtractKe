@@ -55,3 +55,9 @@ class Post(models.Model):
 	post=models.CharField(max_length=100, null=True, blank=True)
 	user=models.ForeignKey(User,on_delete=models.CASCADE,related_name="adminpost",null=True,blank=True)
 	company=models.ForeignKey(Company, on_delete=models.CASCADE,related_name="company_post",null=True,blank=True)
+
+class Comments(models.Model):
+	user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE,related_name='user')
+	comments = models.TextField()
+	date_posted = models.DateTimeField(auto_now=True)
+	post=models.ForeignKey(Post, on_delete=models.CASCADE,related_name="comments")
