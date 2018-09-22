@@ -147,9 +147,17 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 EMAIL_USE_TLS = True
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER ='ben.developer.kenny@gmail.com'
-EMAIL_HOST_PASSWORD ='Better2018'
+EMAIL_HOST_USER = config("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
 EMAIL_PORT = 587
 ACCOUNT_ACTIVATION_DAYS = 7
+
+# Configure Django App for Heroku.
+django_heroku.settings(locals())
